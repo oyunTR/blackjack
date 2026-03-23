@@ -1,18 +1,21 @@
+import java.util.ArrayList;
+
 public class Cards {
 
     private String symbol;
-    private int number;
+    private String number;
 
     public String getSymbol(){
         return symbol;
     }
-    public int getNumber(){
+    public String getNumber(){
         return number;
     }
+
     public void setSymbol(String symbol){
         this.symbol = symbol;
     }
-    public void setNumber(int number){
+    public void setNumber(String number){
         this.number = number;
     }
 }
