@@ -1,6 +1,8 @@
 public enum Actions {
     HIT,
     DOUBLEDOWN,
-    SPILIT,
-    STAY
+    SPLIT,
+    STAY,
+    BOOM,
+    BlackJack
 }
