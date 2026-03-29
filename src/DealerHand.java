@@ -18,4 +18,21 @@ public class DealerHand {
         this.dealerHand.clear();
     }
 
+    // Elin toplam degerini hesapla (Ace = 11 veya 1)
+    public int getTotal() {
+        int total = 0;
+        int aceCount = 0;
+        for (Cards card : dealerHand) {
+            total += card.getValue();
+            if (card.isAce()) {
+                aceCount++;
+            }
+        }
+        while (total > 21 && aceCount > 0) {
+            total -= 10;
+            aceCount--;
+        }
+        return total;
+    }
 }
+
