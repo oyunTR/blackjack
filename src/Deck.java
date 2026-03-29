@@ -1,108 +1,43 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Deck {
 
+    private ArrayList<Cards> decks;  // instance field - artik kaybolmaz
+    private Random random;
+
     public Deck(){
+        decks = new ArrayList<Cards>();
+        random = new Random();
 
-        ArrayList<Cards> cards = new ArrayList<Cards>();
-        int i = 50;
+        // 8 deste olustur (logic yorumlarinda belirtildigi gibi)
+        String[] symbols = {"Diamond", "Heart", "Spade", "Club"};
+        String[] numbers = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 
-        while (cards.size() < 13){
-
-            Cards card = new Cards();
-            card.setSymbol("Diamod");
-            card.setNumber(String.valueOf(i));
-            cards.add(card);
-            if(i <57) {
-                i += 1;
+        for (int deck = 0; deck < 8; deck++) {
+            for (String symbol : symbols) {
+                for (String number : numbers) {
+                    Cards card = new Cards();
+                    card.setSymbol(symbol);
+                    card.setNumber(number);
+                    decks.add(card);
+                }
             }
-            else if(i == 57){
-                i+=8;
-            }
-            else if(i == 65){
-                i+=9;
-            }
-            else if(i == 74){
-                i+=1;
-            }
-            else{
-                i+=6;
-            }
-
         }
-        i=50;
-        while (cards.size() < 26){
+    }
 
-            Cards card = new Cards();
-            card.setSymbol("Heart");
-            card.setNumber(String.valueOf(i));
-            cards.add(card);
-            if(i <57) {
-                i += 1;
-            }
-            else if(i == 57){
-                i+=8;
-            }
-            else if(i == 65){
-                i+=9;
-            }
-            else if(i == 74){
-                i+=1;
-            }
-            else{
-                i+=6;
-            }
-
+    // Desteden rastgele bir kart cek ve cikar
+    public Cards drawCard() {
+        if (decks.isEmpty()) {
+            return null; // deste bitti
         }
-        i=50;
-        while (cards.size() < 39){
+        int randomIndex = random.nextInt(decks.size());
+        return decks.remove(randomIndex); // karti cek ve desteden cikar
+    }
 
-            Cards card = new Cards();
-            card.setSymbol("Spade");
-            card.setNumber(String.valueOf(i));
-            cards.add(card);
-            if(i <57) {
-                i += 1;
-            }
-            else if(i == 57){
-                i+=8;
-            }
-            else if(i == 65){
-                i+=9;
-            }
-            else if(i == 74){
-                i+=1;
-            }
-            else{
-                i+=6;
-            }
-
-        }
-        i=50;
-        while (cards.size() < 52){
-
-            Cards card = new Cards();
-            card.setSymbol("Club");
-            card.setNumber(String.valueOf(i));
-            cards.add(card);
-            if(i <57) {
-                i += 1;
-            }
-            else if(i == 57){
-                i+=8;
-            }
-            else if(i == 65){
-                i+=9;
-            }
-            else if(i == 74){
-                i+=1;
-            }
-            else{
-                i+=6;
-            }
-
-        }
-
+    // Destede kac kart kaldi
+    public int getSize() {
+        return decks.size();
     }
 
 }
