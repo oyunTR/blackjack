@@ -1,4 +1,4 @@
-
+import java.util.Scanner;
 
 public class Logic {
     // kartlari olusturup bunlari bir arraye ata ardindan alinan actiona gore
@@ -40,32 +40,49 @@ public class Logic {
     public String Game(){
         boolean play=true;
         String result="";
-        int bet=0;
-        while(play) {
-
-            String dealerCards = Dealer();
-            String playerCards = Player();
-
-            if(dealerCards.equals("BLACKJACK")) {}
-            else if(playerCards.equals("BLACKJACK")) {}
-            else{}
 
 
-            // write a condition that makes "play=false" if player doesnt want to put bets any more
+        while(play) { // ana oyun dongusu oyuncu stand diyene veya patlayana kadar
+
+            Bet bet=new Bet(); //bet olusturuldu
+            Scanner sc=new Scanner(System.in);
+            System.out.println("Enter your bet: ");
+            bet.setBet(sc.nextInt());
+
+            // kart dagitimi
+            // sirasi ile oyuncu dealer oyuncu dealer
+
+            DealerHand dealerHand=new DealerHand();
+            PlayerHand playerHand=new PlayerHand();
+
+            // Her yeni elde yeni bir 8x52'lik deste olustur
+            Deck deck = new Deck();
+
+            // Kart dagitimi: oyuncu, dealer, oyuncu, dealer sirasi ile
+            playerHand.addCardPlayer(deck.drawCard());  // oyuncuya 1. kart (acik)
+            dealerHand.addCardDealer(deck.drawCard());   // dealer'a 1. kart (kapali)
+            playerHand.addCardPlayer(deck.drawCard());  // oyuncuya 2. kart (acik)
+            dealerHand.addCardDealer(deck.drawCard());   // dealer'a 2. kart (acik)
+
+            // TODO: Burada BLACKJACK kontrolu yap
+            // TODO: Oyuncu action'larini isle (HIT, STAY, SPLIT, DOUBLEDOWN)
+            // TODO: Dealer action'larini isle
+
+
         }
 
-        return "You Won: " + String.valueOf(bet);
+        return "You Won: ";
     }
 
     public String Dealer() {
-        Actions actionD;
+
         String  result="";
 
         return result;
     }
 
     public String Player() {
-        Actions actionP;
+
         String  result="";
 
         return result;
